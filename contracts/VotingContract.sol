@@ -62,16 +62,34 @@ contract VotingContract {
 	// Info Functions ===============================================
 
 	// Get current ballot status
+	function getCurrentBallotStatus() public view onlyOwner returns (uint) {
+		return ballots.getCurrentBallotStatus();
+	}
 
 	// Get current ballot info
 
 	// List all ballot ids and names
 
 	// Get ballot info by id
+	function getBallotById(uint _id) external view onlyOwner returns (
+		uint, 
+		string memory,
+		uint
+	) {
+		return ballots.getBallotById(_id);
+	}
 
-	// Get voter count
+	/// @notice Gets the total voter count in voter roll
+	/// @return Total voter count
+	function getVoterCount() public view returns (uint) {
+		return voters.getVoterCount();
+	}
 
-	// isVoter
+	/// @notice Returns a boolean for whether or not given address is in voter roll
+	/// @return True or false if voter address is valid
+	function isVoter(address voterAddress) public view returns (bool) {
+		return voters.isVoter(voterAddress);
+	}
 
 	// ==============================================================
 
@@ -79,13 +97,29 @@ contract VotingContract {
 
 	// Admin Voter Functions ========================================
 
-	// Add voter
+	/// @notice Adds voter to voting roll & increases total voter count
+	/// @param voterAddress Address of voter to add to voter roll
+	function addVoter(address voterAddress) public onlyOwner {
+		voters.addVoter(voterAddress);
+	}
 
-	// Add multiple voters
+	/// @notice Adds multiple voters to voting roll & increases total voter count
+	/// @param voterAddresses Addresses of voters to add to voter roll
+	function addMultipleVoters(address[] memory voterAddresses) public onlyOwner {
+		voters.addMultipleVoters(voterAddresses);
+	}
 
-	// Remove voter
+	/// @notice Removes voter from voting roll & reduces total voter count
+	/// @param voterAddress Address of voter to remove from voter roll
+	function removeVoter(address voterAddress) public onlyOwner {
+		voters.removeVoter(voterAddress);
+	}
 
-	// Remove multiple voters
+	/// @notice Removes multiple voters from voting roll & reduces total voter count
+	/// @param voterAddresses Addresses of voters to remove from voter roll
+	function removeMultipleVoters(address[] memory voterAddresses) public onlyOwner {
+		voters.removeMultipleVoters(voterAddresses);
+	}
 
 	// ==============================================================
 
@@ -94,12 +128,24 @@ contract VotingContract {
 	// Admin Ballot Functions =======================================
 
 	// Create ballot
+	function createBallot(string memory _name) public onlyOwner {
+		ballots.createBallot(_name);
+	}
 
 	// Delete ballot
+	function deleteBallot() public onlyOwner {
+		ballots.deleteBallot();
+	}
 
 	// Change name of ballot
+	function changeNameBallot(string memory newName) public onlyOwner {
+		ballots.changeNameBallot(newName);
+	}
 
 	// Open ballot, close ballot
+	function openCloseBallot() public onlyOwner {
+		ballots.openCloseBallot();
+	}
 
 	// ==============================================================
 
