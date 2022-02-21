@@ -38,7 +38,7 @@ contract VotingContract {
 
 	
 	// Modifiers
-	modifier onlyAdmin() {
+	modifier onlyOwner() {
 		if (msg.sender != administrator.adminAddress) {
 			revert NotAdmin("Only Administrator May Call Function");
 		}
