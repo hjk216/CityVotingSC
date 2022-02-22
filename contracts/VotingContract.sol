@@ -150,9 +150,16 @@ contract VotingContract {
 	// Admin Election Functions =====================================
 
 	// Add election
-	function addElections(string[] memory electionNames) public onlyOwner {
-		ballots.addElections(electionNames);
+	function addElections(string[][] memory elections) public onlyOwner {
+		ballots.addElections(elections);
 	}
+
+	/*
+	[
+		['1','2'],
+		['3','4']
+	]
+	 */
 
 
 
@@ -268,7 +275,5 @@ contract VotingContract {
 	function getTest(uint _id) public view returns (TestStruct memory) {
 		return testStructs[_id];
 	}
-
-	
 
 }

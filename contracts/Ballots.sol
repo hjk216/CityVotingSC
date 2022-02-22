@@ -148,15 +148,22 @@ contract Ballots {
 	// Admin Election Functions =====================================
 
 	// Add election
-	function addElections(string[] memory electionNames) external onlyOwner ballotClosed {
-		for (uint i = 0; i < electionNames.length; i++) {
+	function addElections(string[][] memory elections) external onlyOwner ballotClosed {
+		for (uint i = 0; i < elections.length; i++) {
 			if (ballotsList[currentBallotId].elections.length != 0) { ballotsList[currentBallotId].currentElectionId++; }
 			ballotsList[currentBallotId].elections.push();
 			Election storage newElection = ballotsList[currentBallotId].elections[ballotsList[currentBallotId].elections.length - 1];
 			
 			newElection.id = ballotsList[currentBallotId].currentElectionId;
-			newElection.name = electionNames[i];
+			newElection.name = elections[i][0];
 			newElection.currentCandidateId = 0;
+
+			for (uint c = 1; c < elections[i].length; c++) {
+				if (newElection.candidates.length != 0) { newElection.currentCandidateId++; }
+				newElection.candidates.push();
+				Candidate storage newCandidate = newElection.candidates[c - 1];
+				newCandidate.name = elections[i][c];
+			}
 		}
 	}
 
