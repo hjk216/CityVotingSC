@@ -71,11 +71,7 @@ contract VotingContract {
 	// List all ballot ids and names
 
 	// Get ballot info by id
-	function getBallotById(uint _id) external view onlyOwner returns (
-		uint, 
-		string memory,
-		uint
-	) {
+	function getBallotById(uint _id) external view onlyOwner returns (Ballots.Ballot memory) {
 		return ballots.getBallotById(_id);
 	}
 
@@ -154,6 +150,11 @@ contract VotingContract {
 	// Admin Election Functions =====================================
 
 	// Add election
+	function addElections(string[] memory electionNames) public onlyOwner {
+		ballots.addElections(electionNames);
+	}
+
+
 
 	// Delete election
 
@@ -247,6 +248,25 @@ contract VotingContract {
 		Issue2 memory newIssue2 = Issue2("hey");
 		newBallot3.issues.push(newIssue2);
 
+	}
+
+
+	
+	struct TestStruct {
+		uint id;
+		string name;
+		string message;
+	}
+
+	TestStruct[] testStructs;
+
+	function createTest(uint _id, string memory _name, string memory _message) public {
+		TestStruct memory newTestStruct = TestStruct(_id, _name, _message);
+		testStructs.push(newTestStruct);
+	}
+
+	function getTest(uint _id) public view returns (TestStruct memory) {
+		return testStructs[_id];
 	}
 
 	

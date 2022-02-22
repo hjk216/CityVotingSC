@@ -16,7 +16,7 @@ contract Ballots {
 		string name;
 		uint currentCandidateId;
 		Candidate[] candidates;
-		mapping(address => bool) hasVoted;
+		//mapping(address => bool) hasVoted;
 	}
 
 	struct Issue {
@@ -25,7 +25,7 @@ contract Ballots {
 		uint forVotes;
 		uint againstVotes;
 		bool isPassed;
-		mapping(address => bool) hasVoted;
+		//mapping(address => bool) hasVoted;
 	}
 
 	struct Ballot {
@@ -96,26 +96,10 @@ contract Ballots {
 	// List all ballot ids and names
 
 	// Get ballot info by id
-	function getBallotById(uint _id) external view onlyOwner returns (
-		uint, 
-		string memory,
-		uint//,
-		//string[][] memory
-	) {
+	function getBallotById(uint _id) external view onlyOwner returns (Ballot memory) {
 		require (_id >= 0 && _id < ballotsList.length);
-		// string[][] memory electionsList;
-
-		// for (uint i = 0; i < ballotsList[_id].elections.length; i++) {
-
-		// }
-
-		return (
-			_id, 
-			ballotsList[_id].name, 
-			ballotsList[_id].status
-		);
+		return ballotsList[_id];
 	} 
-
 
 	// ==============================================================
 
@@ -126,9 +110,9 @@ contract Ballots {
 	// Create ballot
 	function createBallot(string memory _name) external onlyOwner {
 		require(ballotsList.length == 0 || ballotsList[currentBallotId].status == COMPLETE);
+		if(ballotsList.length != 0) { currentBallotId++; }
 		ballotsList.push();
 		Ballot storage newBallot = ballotsList[ballotsList.length - 1];
-		if(ballotsList.length != 0) { currentBallotId++; }
 
 		newBallot.id = currentBallotId;
 		newBallot.name = _name;
@@ -166,9 +150,9 @@ contract Ballots {
 	// Add election
 	function addElections(string[] memory electionNames) external onlyOwner ballotClosed {
 		for (uint i = 0; i < electionNames.length; i++) {
+			if (ballotsList[currentBallotId].elections.length != 0) { ballotsList[currentBallotId].currentElectionId++; }
 			ballotsList[currentBallotId].elections.push();
 			Election storage newElection = ballotsList[currentBallotId].elections[ballotsList[currentBallotId].elections.length - 1];
-			if (ballotsList[currentBallotId].elections.length != 0) { ballotsList[currentBallotId].currentElectionId++; }
 			
 			newElection.id = ballotsList[currentBallotId].currentElectionId;
 			newElection.name = electionNames[i];
