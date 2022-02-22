@@ -52,7 +52,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -174,7 +175,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -187,7 +189,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -206,7 +209,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -377,7 +381,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"name\":\"BallotNotClosed\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"name\":\"NotAdmin\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"name\":\"TestEvent\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string[][]\",\"name\":\"elections\",\"type\":\"string[][]\"}],\"name\":\"addElections\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"voterAddresses\",\"type\":\"address[]\"}],\"name\":\"addMultipleVoters\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"voterAddress\",\"type\":\"address\"}],\"name\":\"addVoter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"newName\",\"type\":\"string\"}],\"name\":\"changeNameBallot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"}],\"name\":\"createBallot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_message\",\"type\":\"string\"}],\"name\":\"createTest\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"deleteBallot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"getBallotById\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"status\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currentElectionId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currentIssueId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"currentCandidateId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"votes\",\"type\":\"uint256\"}],\"internalType\":\"struct Ballots.Candidate[]\",\"name\":\"candidates\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Ballots.Election[]\",\"name\":\"elections\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"forVotes\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"againstVotes\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isPassed\",\"type\":\"bool\"}],\"internalType\":\"struct Ballots.Issue[]\",\"name\":\"issues\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Ballots.Ballot\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getCurrentBallotStatus\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"getTest\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"internalType\":\"struct VotingContract.TestStruct\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getVoterCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"voterAddress\",\"type\":\"address\"}],\"name\":\"isVoter\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"openCloseBallot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"popStruct\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"voterAddresses\",\"type\":\"address[]\"}],\"name\":\"removeMultipleVoters\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"voterAddress\",\"type\":\"address\"}],\"name\":\"removeVoter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"addMultipleVoters(address[])\":{\"params\":{\"voterAddresses\":\"Addresses of voters to add to voter roll\"}},\"addVoter(address)\":{\"params\":{\"voterAddress\":\"Address of voter to add to voter roll\"}},\"getVoterCount()\":{\"returns\":{\"_0\":\"Total voter count\"}},\"isVoter(address)\":{\"returns\":{\"_0\":\"True or false if voter address is valid\"}},\"removeMultipleVoters(address[])\":{\"params\":{\"voterAddresses\":\"Addresses of voters to remove from voter roll\"}},\"removeVoter(address)\":{\"params\":{\"voterAddress\":\"Address of voter to remove from voter roll\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"addMultipleVoters(address[])\":{\"notice\":\"Adds multiple voters to voting roll & increases total voter count\"},\"addVoter(address)\":{\"notice\":\"Adds voter to voting roll & increases total voter count\"},\"getVoterCount()\":{\"notice\":\"Gets the total voter count in voter roll\"},\"isVoter(address)\":{\"notice\":\"Returns a boolean for whether or not given address is in voter roll\"},\"removeMultipleVoters(address[])\":{\"notice\":\"Removes multiple voters from voting roll & reduces total voter count\"},\"removeVoter(address)\":{\"notice\":\"Removes voter from voting roll & reduces total voter count\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/VotingContract.sol\":\"VotingContract\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Ballots.sol\":{\"keccak256\":\"0x05ff89d07a2f4329377ee7a9c5d14ca347eb07f9479ea314bd5c223081adee6e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c7c6b21e3482a056a42b61a8ff1464e0692aa33e355ac56fae7cfaa22b3a0162\",\"dweb:/ipfs/QmScoEwxvck1EcZVKXsgbUHui1HBq1xjDCZs7qSZaXwSzV\"]},\"project:/contracts/Strings.sol\":{\"keccak256\":\"0x0e3427c24315a09715cef9c42c41e80bcb686261d69d9eb1532541ba58aeb27d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://414cf58b1bcc00a9263e318173623bbe2b9df91b04e182d6381cc80f919e2e18\",\"dweb:/ipfs/QmeQmVA641jvWjQ2x1k48w1xM3jU6Vvuzi7oZTgtF4iCRL\"]},\"project:/contracts/Voters.sol\":{\"keccak256\":\"0x2e1195fef5e670fdd46b4fc9dc54134d2403c665081888f38f0b40bdad3180fe\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://dd0bac3b04e793be9b7af1875e0b2be642adb8582cd71e7abdf77d220261b161\",\"dweb:/ipfs/QmZvyaSF8hC9e7VSRxZZrtuaQpgnYhFw36LwSckVQmgveh\"]},\"project:/contracts/VotingContract.sol\":{\"keccak256\":\"0x6094b742f9352e032793d4880a671a46a0adc3d878719bb03b5b0ed05c7fb612\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://19f4818473af84ebfa65d31d0dfb6f255ac25722c03919eec71091084e5d6aa5\",\"dweb:/ipfs/QmfB4BFy844PLZ5mhFyyGGAW8Csi1RfnaYQmgJjZ2QoSB7\"]}},\"version\":1}",
@@ -32826,12 +32831,13 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xDA5d2669eC7c7f705B4c708e7A812f9ab4BE51F5",
-      "transactionHash": "0xd441d74564632cbdda5d4600f603ca45adcb9c5c8fd967bc501ca88b195a7ded"
+      "address": "0x190A63d972a83A8c45F8C94A26917f1Df3A50d0F",
+      "transactionHash": "0x981e41584ebc7492311d17614caf87b47c7f5f6543ae59433c14e2a7ed5da1d0"
     }
   },
   "schemaVersion": "3.4.5",
-  "updatedAt": "2022-02-22T21:20:23.797Z",
+  "updatedAt": "2022-02-22T21:38:41.315Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {
