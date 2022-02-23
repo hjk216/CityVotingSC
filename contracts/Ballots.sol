@@ -2,7 +2,6 @@
 pragma solidity ^0.8.11;
 
 import "./VotingContract.sol";
-import "./Strings.sol";
 
 contract Ballots {
 	struct Candidate {
@@ -16,7 +15,6 @@ contract Ballots {
 		string name;
 		uint currentCandidateId;
 		Candidate[] candidates;
-		//mapping(address => bool) hasVoted;
 	}
 
 	struct Issue {
@@ -24,7 +22,6 @@ contract Ballots {
 		string name;
 		uint forVotes;
 		uint againstVotes;
-		//mapping(address => bool) hasVoted;
 	}
 
 	struct Ballot {
@@ -85,14 +82,21 @@ contract Ballots {
 	// Info Functions ===============================================
 	
 	// Get current ballot status
-	function getCurrentBallotStatus() external view onlyOwner returns (uint) {
+	function getCurrentBallotStatus() public view onlyOwner returns (uint) {
 		require(ballotsList.length > 0);
 		return ballotsList[currentBallotId].status;
 	}
 
 	// Get current ballot info
+	function getCurrentBallot() external view onlyOwner returns (Ballot memory) {
+		require (ballotsList.length > 0, "No Ballot Has Been Created");
+		return ballotsList[currentBallotId];
+	} 
 
 	// List all ballot ids and names
+	function getAllBallots() external view onlyOwner returns (Ballot[] memory) {
+		return ballotsList;
+	}
 
 	// Get ballot info by id
 	function getBallotById(uint _id) external view onlyOwner returns (Ballot memory) {
@@ -169,7 +173,16 @@ contract Ballots {
 
 	// Add issues
 	function addIssues(string[] memory issues) external onlyOwner ballotClosed {
-		
+		for (uint i = 0; i < issues.length; i++) {
+			if (ballotsList[currentBallotId].issues.length != 0) { ballotsList[currentBallotId].currentIssueId++; }
+			ballotsList[currentBallotId].issues.push();
+			Issue storage newIssue = ballotsList[currentBallotId].issues[ballotsList[currentBallotId].issues.length - 1];
+
+			newIssue.id = ballotsList[currentBallotId].currentIssueId;
+			newIssue.name = issues[i];
+			newIssue.forVotes = 0;
+			newIssue.againstVotes = 0;
+		}
 	}
 
 	// ==============================================================
@@ -178,13 +191,31 @@ contract Ballots {
 
 	// Voter Functions ==============================================
 
-	// Vote status
-
-	// Vote for issue
-
-	// Vote for election
-
 	// Vote for all
+	// [ [ TYPE , ID , VOTE ]   ]
+	// [ [ ELECTION , 0 , VOTE ] ]
+	// Election = 0, Issue = 1
+	// uint AGAINST = 0;
+	// uint FOR = 1;
+	function vote(uint[][] memory votes) external onlyOwner {
+		require(getCurrentBallotStatus() == 1);
+
+		for (uint i = 0; i < votes.length; i++) {
+			// Vote for election or issue
+			if (votes[i][0] == 0) {
+				ballotsList[currentBallotId].elections[votes[i][1]].candidates[votes[i][2]].votes++;
+			} else {
+				// Vote for or against issue
+				if (votes[i][2] == 1) {
+					ballotsList[currentBallotId].issues[votes[i][1]].forVotes++;
+				} else {
+					ballotsList[currentBallotId].issues[votes[i][1]].againstVotes++;
+				}
+			}
+		}
+
+
+	}
 
 	// ==============================================================
 

@@ -62,16 +62,22 @@ contract VotingContract {
 	// Info Functions ===============================================
 
 	// Get current ballot status
-	function getCurrentBallotStatus() public view onlyOwner returns (uint) {
+	function getCurrentBallotStatus() public view returns (uint) {
 		return ballots.getCurrentBallotStatus();
 	}
 
 	// Get current ballot info
+	function getCurrentBallot() public view returns (Ballots.Ballot memory) {
+		return ballots.getCurrentBallot();
+	}
 
 	// List all ballot ids and names
+	function getAllBallots() public view returns (Ballots.Ballot[] memory) {
+		return ballots.getAllBallots();
+	}
 
 	// Get ballot info by id
-	function getBallotById(uint _id) external view onlyOwner returns (Ballots.Ballot memory) {
+	function getBallotById(uint _id) external view returns (Ballots.Ballot memory) {
 		return ballots.getBallotById(_id);
 	}
 
@@ -85,6 +91,10 @@ contract VotingContract {
 	/// @return True or false if voter address is valid
 	function isVoter(address voterAddress) public view returns (bool) {
 		return voters.isVoter(voterAddress);
+	}
+
+	function hasVoterVoted() public view returns (bool) {
+		return voters.hasVoterVoted(msg.sender);
 	}
 
 	// ==============================================================
@@ -166,13 +176,14 @@ contract VotingContract {
 
 	// Voter Functions ==============================================
 
-	// Vote status (to see if voter has voted on each issue & election)
-
-	// Vote for issue
-
-	// Vote for election
-
 	// Vote for all
+	function vote(uint[][] memory votes) public {
+		require(voters.hasVoterVoted(msg.sender) == false);
+
+		ballots.vote(votes);
+
+		voters.updateHasVoted(msg.sender);
+	}
 
 	// ==============================================================
 
@@ -187,98 +198,5 @@ contract VotingContract {
 	// Other Functions ==============================================
 
 	// ==============================================================
-
-
-
-	// Testing ======================================================
-	
-	// ==============================================================
-
-	struct Election2 {
-		string name;
-	}
-
-	struct Issue2 {
-		string name;
-	}
-
-	struct Ballot2 { 
-		string name;
-		mapping (uint => Issue2) issues;
-	}
-
-	struct Ballot3 {
-		string name;
-		string[] messages;
-		Issue2[] issues;
-	}
-
-	uint ballotId;
-
-	//Ballot2[] ballots2;
-	mapping (uint => Ballot2) ballots2;
-	mapping (uint => Ballot3) ballots3;
-
-	function popStruct() public {
-		Ballot2 storage newBallot2 = ballots2[0];
-		newBallot2.name = "hello world";
-
-		Ballot3 storage newBallot3 = ballots3[0];
-		newBallot3.name = "hi";
-
-		string memory aString = "world";
-		newBallot3.messages.push(aString);
-
-		Issue2 memory newIssue2 = Issue2("hey");
-		newBallot3.issues.push(newIssue2);
-
-	}
-
-
-	
-	struct TestStruct {
-		uint id;
-		string name;
-		string message;
-	}
-
-	TestStruct[] testStructs;
-
-	function createTest(uint _id, string memory _name, string memory _message) public {
-		TestStruct memory newTestStruct = TestStruct(_id, _name, _message);
-		testStructs.push(newTestStruct);
-	}
-
-	function getTest(uint _id) public view returns (TestStruct memory) {
-		return testStructs[_id];
-	}
-
-
-	string[] testArray;
-
-	function populate() public {
-		testArray.push('ONE');
-		testArray.push('TWO');
-		testArray.push('THREE');
-		testArray.push('FOUR');
-		testArray.push('FIVE');
-	}
-
-	function addItem(string memory item) public {
-		testArray.push(item);
-	}
-
-	function deleteItem(uint aNum) public {
-		delete testArray[aNum];
-	}
-
-	function deleteCustom(uint aNum) public {
-		testArray[aNum] = testArray[testArray.length - 1];
-		testArray.pop();
-	}
-
-	function getArray() public view returns (string[] memory) {
-		return testArray;
-	}
 
 }

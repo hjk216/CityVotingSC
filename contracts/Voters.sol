@@ -7,6 +7,7 @@ contract Voters {
     struct Voter {
 		/// @notice Address of registered voter
 		address voterAddress;
+		bool hasVoted;
 	}
 
     /// @notice Total number of registered voters
@@ -41,19 +42,25 @@ contract Voters {
 
     /// @notice Returns a boolean for whether or not given address is in voter roll
 	/// @return True or false if voter address is valid
-    function isVoter(address voterAddress) external view returns (bool) {
-        if (voterRoll[voterAddress].voterAddress != address(0x0)) {
+    function isVoter(address _voterAddress) external view returns (bool) {
+        if (voterRoll[_voterAddress].voterAddress != address(0x0)) {
             return true;
         } else {
             return false;
         }
     }
 
+	function hasVoterVoted(address _voterAddress) external view onlyOwner returns (bool) {
+		return voterRoll[_voterAddress].hasVoted;
+	}
+
+
+
     /// @notice Adds voter to voting roll & increases total voter count
-	/// @param voterAddress Address of voter to add to voter roll
-	function addVoter(address voterAddress) external onlyOwner {
-		Voter memory newVoter = Voter(voterAddress);
-		voterRoll[voterAddress] = newVoter;
+	/// @param _voterAddress Address of voter to add to voter roll
+	function addVoter(address _voterAddress) external onlyOwner {
+		Voter memory newVoter = Voter(_voterAddress, false);
+		voterRoll[_voterAddress] = newVoter;
 		voterCount = voterCount + 1;
 	}
 
@@ -61,16 +68,16 @@ contract Voters {
 	/// @param voterAddresses Addresses of voters to add to voter roll
 	function addMultipleVoters(address[] memory voterAddresses) external onlyOwner {
 		for (uint i = 0; i < voterAddresses.length; i++) {
-			Voter memory newVoter = Voter(voterAddresses[i]);
+			Voter memory newVoter = Voter(voterAddresses[i], false);
 			voterRoll[voterAddresses[i]] = newVoter;
 			voterCount = voterCount + 1;
 		}
 	}
 
 	/// @notice Removes voter from voting roll & reduces total voter count
-	/// @param voterAddress Address of voter to remove from voter roll
-	function removeVoter(address voterAddress) external onlyOwner {
-		delete voterRoll[voterAddress];
+	/// @param _voterAddress Address of voter to remove from voter roll
+	function removeVoter(address _voterAddress) external onlyOwner {
+		delete voterRoll[_voterAddress];
 		voterCount = voterCount - 1;
 	}
 
@@ -81,6 +88,10 @@ contract Voters {
 			delete voterRoll[voterAddresses[i]];
 			voterCount = voterCount - 1;
 		}
+	}
+
+	function updateHasVoted(address _voterAddress) external onlyOwner {
+		voterRoll[_voterAddress].hasVoted = true;
 	}
 
 }
