@@ -24,7 +24,6 @@ contract Ballots {
 		string name;
 		uint forVotes;
 		uint againstVotes;
-		bool isPassed;
 		//mapping(address => bool) hasVoted;
 	}
 
@@ -127,11 +126,6 @@ contract Ballots {
 		currentBallotId--;
 	}
 
-	// Change name of ballot
-	function changeNameBallot(string memory newName) external onlyOwner ballotClosed {
-		ballotsList[currentBallotId].name = newName;
-	}
-
 	// Open ballot, close ballot
 	function openCloseBallot() external onlyOwner {
 		if(ballotsList[currentBallotId].status == CLOSED) {
@@ -167,35 +161,16 @@ contract Ballots {
 		}
 	}
 
-	// Delete election
-	/// @dev Leaves space in elections array
-	function deleteElectionById(uint _id) external onlyOwner ballotClosed {
-		delete ballotsList[currentBallotId].elections[_id];
-	}
-
-	// Change name of election
-	function changeNameElectionById(uint _id, string memory newName) external onlyOwner ballotClosed {
-		ballotsList[currentBallotId].elections[_id].name = newName;
-	}
-
-	// Add candidates
-	function addCandidates(uint _id, string[] memory candidateNames) external onlyOwner ballotClosed {
-
-	}
-
-	// Delete candidate
-
 	// ==============================================================
 
 
 
 	// Admin Issue Functions ========================================
 
-	// Add issue
-
-	// Delete issue
-
-	// Change name of issue
+	// Add issues
+	function addIssues(string[] memory issues) external onlyOwner ballotClosed {
+		
+	}
 
 	// ==============================================================
 

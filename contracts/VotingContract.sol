@@ -133,11 +133,6 @@ contract VotingContract {
 		ballots.deleteBallot();
 	}
 
-	// Change name of ballot
-	function changeNameBallot(string memory newName) public onlyOwner {
-		ballots.changeNameBallot(newName);
-	}
-
 	// Open ballot, close ballot
 	function openCloseBallot() public onlyOwner {
 		ballots.openCloseBallot();
@@ -154,23 +149,6 @@ contract VotingContract {
 		ballots.addElections(elections);
 	}
 
-	/*
-	[
-		['1','2'],
-		['3','4']
-	]
-	 */
-
-
-
-	// Delete election
-
-	// Change name of election
-
-	// Add candidate
-
-	// Delete candidate
-
 	// ==============================================================
 
 
@@ -178,10 +156,9 @@ contract VotingContract {
 	// Admin Issue Functions ========================================
 
 	// Add issue
-
-	// Delete issue
-
-	// Change name of issue
+	function addIssues(string[] memory issues) public onlyOwner {
+		ballots.addIssues(issues);
+	}
 
 	// ==============================================================
 
@@ -274,6 +251,34 @@ contract VotingContract {
 
 	function getTest(uint _id) public view returns (TestStruct memory) {
 		return testStructs[_id];
+	}
+
+
+	string[] testArray;
+
+	function populate() public {
+		testArray.push('ONE');
+		testArray.push('TWO');
+		testArray.push('THREE');
+		testArray.push('FOUR');
+		testArray.push('FIVE');
+	}
+
+	function addItem(string memory item) public {
+		testArray.push(item);
+	}
+
+	function deleteItem(uint aNum) public {
+		delete testArray[aNum];
+	}
+
+	function deleteCustom(uint aNum) public {
+		testArray[aNum] = testArray[testArray.length - 1];
+		testArray.pop();
+	}
+
+	function getArray() public view returns (string[] memory) {
+		return testArray;
 	}
 
 }
