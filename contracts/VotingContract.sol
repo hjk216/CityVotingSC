@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.11;
-//pragma experimental ABIEncoderV2;
 
 import "./VoterStorage.sol";
 import "./BallotStorage.sol";
@@ -37,8 +36,6 @@ contract VotingContract is BallotStorage, VoterStorage {
 		}
 		_;
 	}
-
-
 
 	/// @notice Get the status of the most recent ballot
 	/// @return The ballot status of CLOSED = 0, OPEN = 1, COMPLETE = 2
@@ -85,17 +82,15 @@ contract VotingContract is BallotStorage, VoterStorage {
 	}
 
 	/// @notice Check whether or not a voter has voted on current ballot
-	function hasVoted(address _voterAddress, uint ballotId) public view returns (bool) {
-		return voteRecordList[ballotId].hasVoted[_voterAddress];
+	/// @param _voterAddress Address of voter to check
+	/// @param _ballotId Id of ballot to check
+	/// @return True if voter has voted on ballot, false is voter has not voted on ballot or does not exist
+	function hasVoted(address _voterAddress, uint _ballotId) public view returns (bool) {
+		return voteRecordList[_ballotId].hasVoted[_voterAddress];
 	}
 
-	// ==============================================================
-
-
-
-	// Admin Functions ==============================================
-
-	// Create ballot
+	/// @notice Admin creates an empty ballot, pushes to ballostList, and creates a record in voteRecordList
+	/// @param _name The name of the ballot
 	function createBallot(string memory _name) public onlyOwner {
 		require(ballotsList.length == 0 || ballotsList[currentBallotId].status == COMPLETE);
 		if(ballotsList.length != 0) { currentBallotId++; }
@@ -113,7 +108,7 @@ contract VotingContract is BallotStorage, VoterStorage {
 		newVoteRecord.ballotId = currentBallotId;
 	}
 
-	// Delete ballot
+	/// @notice If ballot is closed, admin can delete ballot from ballotsList and record from voteRecordList
 	function deleteBallot() public onlyOwner ballotClosed {
 		delete ballotsList[currentBallotId];
 		ballotsList.pop();
@@ -124,7 +119,7 @@ contract VotingContract is BallotStorage, VoterStorage {
 		}
 	}
 
-	// Open ballot, close ballot
+	/// @notice Admin can open the ballot and declare ballot complete
 	function openCloseBallot() public onlyOwner {
 		if(ballotsList[currentBallotId].status == CLOSED) {
 			ballotsList[currentBallotId].status = OPEN;
@@ -133,7 +128,9 @@ contract VotingContract is BallotStorage, VoterStorage {
 		}
 	}
 
-	// Add election
+	/// @notice If ballot is closed, admin can add multiple elections to the current ballot
+	/// @param elections List of lists with the following structure, 
+	/// [ [ election name , candidate name , candidate name ...], ... ]
 	function addElections(string[][] memory elections) public onlyOwner ballotClosed {
 		for (uint i = 0; i < elections.length; i++) {
 			if (ballotsList[currentBallotId].elections.length != 0) { ballotsList[currentBallotId].currentElectionId++; }
@@ -153,6 +150,8 @@ contract VotingContract is BallotStorage, VoterStorage {
 		}
 	}
 
+	/// @notice If ballot is closed, admin can add multiple issues to the ballot
+	/// @param issues List of issue names
 	function addIssues(string[] memory issues) public onlyOwner ballotClosed {
 		for (uint i = 0; i < issues.length; i++) {
 			if (ballotsList[currentBallotId].issues.length != 0) { ballotsList[currentBallotId].currentIssueId++; }
@@ -165,12 +164,8 @@ contract VotingContract is BallotStorage, VoterStorage {
 			newIssue.againstVotes = 0;
 		}
 	}
-	
-	// ==============================================================
 
-	// Admin Voter Functions ========================================
-	
-	/// @notice Adds voter to voting roll & increases total voter count
+	/// @notice Admin adds voter to voting roll & increases total voter count
 	/// @param _voterAddress Address of voter to add to voter roll
 	function addVoter(address _voterAddress) public onlyOwner {
 		Voter memory newVoter = Voter(_voterAddress);
@@ -178,7 +173,7 @@ contract VotingContract is BallotStorage, VoterStorage {
 		voterCount = voterCount + 1;
 	}
 
-	/// @notice Adds multiple voters to voting roll & increases total voter count
+	/// @notice Admin adds multiple voters to voting roll & increases total voter count
 	/// @param voterAddresses Addresses of voters to add to voter roll
 	function addMultipleVoters(address[] memory voterAddresses) public onlyOwner {
 		for (uint i = 0; i < voterAddresses.length; i++) {
@@ -188,14 +183,14 @@ contract VotingContract is BallotStorage, VoterStorage {
 		}
 	}
 
-	/// @notice Removes voter from voting roll & reduces total voter count
+	/// @notice Admin removes voter from voting roll & reduces total voter count
 	/// @param _voterAddress Address of voter to remove from voter roll
 	function removeVoter(address _voterAddress) public onlyOwner {
 		delete voterRoll[_voterAddress];
 		voterCount = voterCount - 1;
 	}
 
-	/// @notice Removes multiple voters from voting roll & reduces total voter count
+	/// @notice Admin removes multiple voters from voting roll & reduces total voter count
 	/// @param voterAddresses Addresses of voters to remove from voter roll
 	function removeMultipleVoters(address[] memory voterAddresses) public onlyOwner {
 		for (uint i = 0; i < voterAddresses.length; i++) {
@@ -204,17 +199,12 @@ contract VotingContract is BallotStorage, VoterStorage {
 		}
 	}
 
-	// ==============================================================
-
-
-	// Voter Functions ==============================================
-
-	// Vote for all
-	// [ [ TYPE , ID , VOTE ]   ]
-	// [ [ ELECTION , 0 , VOTE ] ]
-	// Election = 0, Issue = 1
-	// uint AGAINST = 0;
-	// uint FOR = 1;
+	/// @notice If they have not voted, registered voters can vote for elections & issues on the current, open ballot
+	/// @param votes List of uint lists with the following structure,
+	/// [ [ election or issue, election id or issue id, VOTE ], ... ]
+	/// election = 0 , issue = 1
+	/// For issue VOTE, forVote = 1, againstVote = 0
+	/// For election VOTE, VOTE = id of candidate
 	function vote(uint[][] memory votes) public onlyOwner {
 		require(getCurrentBallotStatus() == 1 && hasVoted(msg.sender, currentBallotId) == false);
 
@@ -233,7 +223,5 @@ contract VotingContract is BallotStorage, VoterStorage {
 		}
 		voteRecordList[currentBallotId].hasVoted[msg.sender] = true;
 	}
-
-	// ==============================================================
 
 }

@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.11;
 
-//import "./VotingContract.sol";
-
 contract VoterStorage {
     struct Voter {
 		/// @notice Address of registered voter
@@ -10,7 +8,10 @@ contract VoterStorage {
 	}
 
 	struct VoteRecord {
+		/// @notice Ballot id 
 		uint ballotId;
+
+		/// @notice Records if address has voted for this ballot
 		mapping(address => bool) hasVoted;
 	}
 
@@ -20,6 +21,7 @@ contract VoterStorage {
     /// @notice Voting roll of all registered voters
 	mapping(address => Voter) public voterRoll;
 
+	/// @notice Records if voters have voted on ballot by ballot id
 	VoteRecord[] voteRecordList;
 
 }

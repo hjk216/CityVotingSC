@@ -21,9 +21,9 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"voterRoll\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"voterAddress\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"voterRoll(address)\":{\"notice\":\"Voting roll of all registered voters\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/VoterStorage.sol\":\"VoterStorage\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/VoterStorage.sol\":{\"keccak256\":\"0x275c1f542b240e7937005912b041e1601812d45fc228b8644eee6e9270e00f18\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://70a5c393409c2a45374c09306526f4da9492b852dc5ec1304ee7b2031b697041\",\"dweb:/ipfs/QmUzWuVsrrRwkdrdT6ZL8owWqFjkoFeASNnh7wAqzaRJFy\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b5061018e806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c806327736f8514610030575b600080fd5b61004a60048036038101906100459190610101565b610060565b604051610057919061013d565b60405180910390f35b60016020528060005260406000206000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905081565b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006100ce826100a3565b9050919050565b6100de816100c3565b81146100e957600080fd5b50565b6000813590506100fb816100d5565b92915050565b6000602082840312156101175761011661009e565b5b6000610125848285016100ec565b91505092915050565b610137816100c3565b82525050565b6000602082019050610152600083018461012e565b9291505056fea26469706673582212203f782ca65f5e39b1caee242e5a2c412338e655095cceeb5f4eac6c8725c31d3464736f6c634300080b0033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c806327736f8514610030575b600080fd5b61004a60048036038101906100459190610101565b610060565b604051610057919061013d565b60405180910390f35b60016020528060005260406000206000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905081565b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006100ce826100a3565b9050919050565b6100de816100c3565b81146100e957600080fd5b50565b6000813590506100fb816100d5565b92915050565b6000602082840312156101175761011661009e565b5b6000610125848285016100ec565b91505092915050565b610137816100c3565b82525050565b6000602082019050610152600083018461012e565b9291505056fea26469706673582212203f782ca65f5e39b1caee242e5a2c412338e655095cceeb5f4eac6c8725c31d3464736f6c634300080b0033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"voterRoll\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"voterAddress\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"voterRoll(address)\":{\"notice\":\"Voting roll of all registered voters\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/VoterStorage.sol\":\"VoterStorage\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/VoterStorage.sol\":{\"keccak256\":\"0xa7fc66a748bfaf4fc15c25502acbcdb1a9a67d514524f626e292ffb40bf1df2a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://861d56dafdc43c42cd82bcb59191f19bb11e7f828d3629c29e44c18186eb97fd\",\"dweb:/ipfs/QmY73EkKUrLTmoiXEq89fuxQvCxwHtLmgZP2bmevUEKCfo\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5061018e806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c806327736f8514610030575b600080fd5b61004a60048036038101906100459190610101565b610060565b604051610057919061013d565b60405180910390f35b60016020528060005260406000206000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905081565b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006100ce826100a3565b9050919050565b6100de816100c3565b81146100e957600080fd5b50565b6000813590506100fb816100d5565b92915050565b6000602082840312156101175761011661009e565b5b6000610125848285016100ec565b91505092915050565b610137816100c3565b82525050565b6000602082019050610152600083018461012e565b9291505056fea264697066735822122062fa366564e876a1deb0c881071be895dc1a243c29ec919b7f4f5b23b8737e2864736f6c634300080b0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c806327736f8514610030575b600080fd5b61004a60048036038101906100459190610101565b610060565b604051610057919061013d565b60405180910390f35b60016020528060005260406000206000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905081565b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006100ce826100a3565b9050919050565b6100de816100c3565b81146100e957600080fd5b50565b6000813590506100fb816100d5565b92915050565b6000602082840312156101175761011661009e565b5b6000610125848285016100ec565b91505092915050565b610137816100c3565b82525050565b6000602082019050610152600083018461012e565b9291505056fea264697066735822122062fa366564e876a1deb0c881071be895dc1a243c29ec919b7f4f5b23b8737e2864736f6c634300080b0033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [
@@ -804,23 +804,23 @@
       "name": "#utility.yul"
     }
   ],
-  "sourceMap": "92:392:1:-:0;;;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "92:392:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;407:42;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;88:117:3:-;197:1;194;187:12;334:126;371:7;411:42;404:5;400:54;389:65;;334:126;;;:::o;466:96::-;503:7;532:24;550:5;532:24;:::i;:::-;521:35;;466:96;;;:::o;568:122::-;641:24;659:5;641:24;:::i;:::-;634:5;631:35;621:63;;680:1;677;670:12;621:63;568:122;:::o;696:139::-;742:5;780:6;767:20;758:29;;796:33;823:5;796:33;:::i;:::-;696:139;;;;:::o;841:329::-;900:6;949:2;937:9;928:7;924:23;920:32;917:119;;;955:79;;:::i;:::-;917:119;1075:1;1100:53;1145:7;1136:6;1125:9;1121:22;1100:53;:::i;:::-;1090:63;;1046:117;841:329;;;;:::o;1176:118::-;1263:24;1281:5;1263:24;:::i;:::-;1258:3;1251:37;1176:118;;:::o;1300:222::-;1393:4;1431:2;1420:9;1416:18;1408:26;;1444:71;1512:1;1501:9;1497:17;1488:6;1444:71;:::i;:::-;1300:222;;;;:::o",
-  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.11;\n\n//import \"./VotingContract.sol\";\n\ncontract VoterStorage {\n    struct Voter {\n\t\t/// @notice Address of registered voter\n\t\taddress voterAddress;\n\t}\n\n\tstruct VoteRecord {\n\t\tuint ballotId;\n\t\tmapping(address => bool) hasVoted;\n\t}\n\n    /// @notice Total number of registered voters\n\tuint voterCount;\n\n    /// @notice Voting roll of all registered voters\n\tmapping(address => Voter) public voterRoll;\n\n\tVoteRecord[] voteRecordList;\n\n}\n",
+  "sourceMap": "58:542:1:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "58:542:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;458:42;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;88:117:3:-;197:1;194;187:12;334:126;371:7;411:42;404:5;400:54;389:65;;334:126;;;:::o;466:96::-;503:7;532:24;550:5;532:24;:::i;:::-;521:35;;466:96;;;:::o;568:122::-;641:24;659:5;641:24;:::i;:::-;634:5;631:35;621:63;;680:1;677;670:12;621:63;568:122;:::o;696:139::-;742:5;780:6;767:20;758:29;;796:33;823:5;796:33;:::i;:::-;696:139;;;;:::o;841:329::-;900:6;949:2;937:9;928:7;924:23;920:32;917:119;;;955:79;;:::i;:::-;917:119;1075:1;1100:53;1145:7;1136:6;1125:9;1121:22;1100:53;:::i;:::-;1090:63;;1046:117;841:329;;;;:::o;1176:118::-;1263:24;1281:5;1263:24;:::i;:::-;1258:3;1251:37;1176:118;;:::o;1300:222::-;1393:4;1431:2;1420:9;1416:18;1408:26;;1444:71;1512:1;1501:9;1497:17;1488:6;1444:71;:::i;:::-;1300:222;;;;:::o",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.11;\n\ncontract VoterStorage {\n    struct Voter {\n\t\t/// @notice Address of registered voter\n\t\taddress voterAddress;\n\t}\n\n\tstruct VoteRecord {\n\t\t/// @notice Ballot id \n\t\tuint ballotId;\n\n\t\t/// @notice Records if address has voted for this ballot\n\t\tmapping(address => bool) hasVoted;\n\t}\n\n    /// @notice Total number of registered voters\n\tuint voterCount;\n\n    /// @notice Voting roll of all registered voters\n\tmapping(address => Voter) public voterRoll;\n\n\t/// @notice Records if voters have voted on ballot by ballot id\n\tVoteRecord[] voteRecordList;\n\n}\n",
   "sourcePath": "/Users/hubertkdayssi/Documents/CS_Projects/voting_app/contracts/VoterStorage.sol",
   "ast": {
     "absolutePath": "project:/contracts/VoterStorage.sol",
     "exportedSymbols": {
       "VoterStorage": [
-        93
+        114
       ]
     },
-    "id": 94,
+    "id": 115,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 68,
+        "id": 86,
         "literals": [
           "solidity",
           "^",
@@ -837,27 +837,27 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 93,
+        "id": 114,
         "linearizedBaseContracts": [
-          93
+          114
         ],
         "name": "VoterStorage",
-        "nameLocation": "101:12:1",
+        "nameLocation": "67:12:1",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "VoterStorage.Voter",
-            "id": 72,
+            "id": 90,
             "members": [
               {
                 "constant": false,
-                "id": 71,
+                "id": 89,
                 "mutability": "mutable",
                 "name": "voterAddress",
-                "nameLocation": "187:12:1",
+                "nameLocation": "153:12:1",
                 "nodeType": "VariableDeclaration",
-                "scope": 72,
-                "src": "179:20:1",
+                "scope": 90,
+                "src": "145:20:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -865,10 +865,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 70,
+                  "id": 88,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "179:7:1",
+                  "src": "145:7:1",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -879,25 +879,25 @@
               }
             ],
             "name": "Voter",
-            "nameLocation": "127:5:1",
+            "nameLocation": "93:5:1",
             "nodeType": "StructDefinition",
-            "scope": 93,
-            "src": "120:83:1",
+            "scope": 114,
+            "src": "86:83:1",
             "visibility": "public"
           },
           {
             "canonicalName": "VoterStorage.VoteRecord",
-            "id": 79,
+            "id": 99,
             "members": [
               {
                 "constant": false,
-                "id": 74,
+                "id": 93,
                 "mutability": "mutable",
                 "name": "ballotId",
-                "nameLocation": "233:8:1",
+                "nameLocation": "224:8:1",
                 "nodeType": "VariableDeclaration",
-                "scope": 79,
-                "src": "228:13:1",
+                "scope": 99,
+                "src": "219:13:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -905,10 +905,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 73,
+                  "id": 92,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "228:4:1",
+                  "src": "219:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -918,13 +918,13 @@
               },
               {
                 "constant": false,
-                "id": 78,
+                "id": 98,
                 "mutability": "mutable",
                 "name": "hasVoted",
-                "nameLocation": "270:8:1",
+                "nameLocation": "321:8:1",
                 "nodeType": "VariableDeclaration",
-                "scope": 79,
-                "src": "245:33:1",
+                "scope": 99,
+                "src": "296:33:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -932,28 +932,28 @@
                   "typeString": "mapping(address => bool)"
                 },
                 "typeName": {
-                  "id": 77,
+                  "id": 97,
                   "keyType": {
-                    "id": 75,
+                    "id": 95,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "253:7:1",
+                    "src": "304:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
                   "nodeType": "Mapping",
-                  "src": "245:24:1",
+                  "src": "296:24:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                     "typeString": "mapping(address => bool)"
                   },
                   "valueType": {
-                    "id": 76,
+                    "id": 96,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "264:4:1",
+                    "src": "315:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -964,27 +964,27 @@
               }
             ],
             "name": "VoteRecord",
-            "nameLocation": "213:10:1",
+            "nameLocation": "179:10:1",
             "nodeType": "StructDefinition",
-            "scope": 93,
-            "src": "206:76:1",
+            "scope": 114,
+            "src": "172:161:1",
             "visibility": "public"
           },
           {
             "constant": false,
             "documentation": {
-              "id": 80,
+              "id": 100,
               "nodeType": "StructuredDocumentation",
-              "src": "288:45:1",
+              "src": "339:45:1",
               "text": "@notice Total number of registered voters"
             },
-            "id": 82,
+            "id": 102,
             "mutability": "mutable",
             "name": "voterCount",
-            "nameLocation": "340:10:1",
+            "nameLocation": "391:10:1",
             "nodeType": "VariableDeclaration",
-            "scope": 93,
-            "src": "335:15:1",
+            "scope": 114,
+            "src": "386:15:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -992,10 +992,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 81,
+              "id": 101,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "335:4:1",
+              "src": "386:4:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -1006,57 +1006,57 @@
           {
             "constant": false,
             "documentation": {
-              "id": 83,
+              "id": 103,
               "nodeType": "StructuredDocumentation",
-              "src": "357:48:1",
+              "src": "408:48:1",
               "text": "@notice Voting roll of all registered voters"
             },
             "functionSelector": "27736f85",
-            "id": 88,
+            "id": 108,
             "mutability": "mutable",
             "name": "voterRoll",
-            "nameLocation": "440:9:1",
+            "nameLocation": "491:9:1",
             "nodeType": "VariableDeclaration",
-            "scope": 93,
-            "src": "407:42:1",
+            "scope": 114,
+            "src": "458:42:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Voter_$72_storage_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Voter_$90_storage_$",
               "typeString": "mapping(address => struct VoterStorage.Voter)"
             },
             "typeName": {
-              "id": 87,
+              "id": 107,
               "keyType": {
-                "id": 84,
+                "id": 104,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "415:7:1",
+                "src": "466:7:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "407:25:1",
+              "src": "458:25:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Voter_$72_storage_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Voter_$90_storage_$",
                 "typeString": "mapping(address => struct VoterStorage.Voter)"
               },
               "valueType": {
-                "id": 86,
+                "id": 106,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 85,
+                  "id": 105,
                   "name": "Voter",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 72,
-                  "src": "426:5:1"
+                  "referencedDeclaration": 90,
+                  "src": "477:5:1"
                 },
-                "referencedDeclaration": 72,
-                "src": "426:5:1",
+                "referencedDeclaration": 90,
+                "src": "477:5:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Voter_$72_storage_ptr",
+                  "typeIdentifier": "t_struct$_Voter_$90_storage_ptr",
                   "typeString": "struct VoterStorage.Voter"
                 }
               }
@@ -1065,68 +1065,74 @@
           },
           {
             "constant": false,
-            "id": 92,
+            "documentation": {
+              "id": 109,
+              "nodeType": "StructuredDocumentation",
+              "src": "504:63:1",
+              "text": "@notice Records if voters have voted on ballot by ballot id"
+            },
+            "id": 113,
             "mutability": "mutable",
             "name": "voteRecordList",
-            "nameLocation": "466:14:1",
+            "nameLocation": "582:14:1",
             "nodeType": "VariableDeclaration",
-            "scope": 93,
-            "src": "453:27:1",
+            "scope": 114,
+            "src": "569:27:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_VoteRecord_$79_storage_$dyn_storage",
+              "typeIdentifier": "t_array$_t_struct$_VoteRecord_$99_storage_$dyn_storage",
               "typeString": "struct VoterStorage.VoteRecord[]"
             },
             "typeName": {
               "baseType": {
-                "id": 90,
+                "id": 111,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 89,
+                  "id": 110,
                   "name": "VoteRecord",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 79,
-                  "src": "453:10:1"
+                  "referencedDeclaration": 99,
+                  "src": "569:10:1"
                 },
-                "referencedDeclaration": 79,
-                "src": "453:10:1",
+                "referencedDeclaration": 99,
+                "src": "569:10:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_VoteRecord_$79_storage_ptr",
+                  "typeIdentifier": "t_struct$_VoteRecord_$99_storage_ptr",
                   "typeString": "struct VoterStorage.VoteRecord"
                 }
               },
-              "id": 91,
+              "id": 112,
               "nodeType": "ArrayTypeName",
-              "src": "453:12:1",
+              "src": "569:12:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_VoteRecord_$79_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_VoteRecord_$99_storage_$dyn_storage_ptr",
                 "typeString": "struct VoterStorage.VoteRecord[]"
               }
             },
             "visibility": "internal"
           }
         ],
-        "scope": 94,
-        "src": "92:392:1",
+        "scope": 115,
+        "src": "58:542:1",
         "usedErrors": []
       }
     ],
-    "src": "32:453:1"
+    "src": "32:569:1"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/VoterStorage.sol",
     "exportedSymbols": {
       "VoterStorage": [
-        93
+        114
       ]
     },
-    "id": 94,
+    "id": 115,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 68,
+        "id": 86,
         "literals": [
           "solidity",
           "^",
@@ -1143,27 +1149,27 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 93,
+        "id": 114,
         "linearizedBaseContracts": [
-          93
+          114
         ],
         "name": "VoterStorage",
-        "nameLocation": "101:12:1",
+        "nameLocation": "67:12:1",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "VoterStorage.Voter",
-            "id": 72,
+            "id": 90,
             "members": [
               {
                 "constant": false,
-                "id": 71,
+                "id": 89,
                 "mutability": "mutable",
                 "name": "voterAddress",
-                "nameLocation": "187:12:1",
+                "nameLocation": "153:12:1",
                 "nodeType": "VariableDeclaration",
-                "scope": 72,
-                "src": "179:20:1",
+                "scope": 90,
+                "src": "145:20:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1171,10 +1177,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 70,
+                  "id": 88,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "179:7:1",
+                  "src": "145:7:1",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -1185,25 +1191,25 @@
               }
             ],
             "name": "Voter",
-            "nameLocation": "127:5:1",
+            "nameLocation": "93:5:1",
             "nodeType": "StructDefinition",
-            "scope": 93,
-            "src": "120:83:1",
+            "scope": 114,
+            "src": "86:83:1",
             "visibility": "public"
           },
           {
             "canonicalName": "VoterStorage.VoteRecord",
-            "id": 79,
+            "id": 99,
             "members": [
               {
                 "constant": false,
-                "id": 74,
+                "id": 93,
                 "mutability": "mutable",
                 "name": "ballotId",
-                "nameLocation": "233:8:1",
+                "nameLocation": "224:8:1",
                 "nodeType": "VariableDeclaration",
-                "scope": 79,
-                "src": "228:13:1",
+                "scope": 99,
+                "src": "219:13:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1211,10 +1217,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 73,
+                  "id": 92,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "228:4:1",
+                  "src": "219:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1224,13 +1230,13 @@
               },
               {
                 "constant": false,
-                "id": 78,
+                "id": 98,
                 "mutability": "mutable",
                 "name": "hasVoted",
-                "nameLocation": "270:8:1",
+                "nameLocation": "321:8:1",
                 "nodeType": "VariableDeclaration",
-                "scope": 79,
-                "src": "245:33:1",
+                "scope": 99,
+                "src": "296:33:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1238,28 +1244,28 @@
                   "typeString": "mapping(address => bool)"
                 },
                 "typeName": {
-                  "id": 77,
+                  "id": 97,
                   "keyType": {
-                    "id": 75,
+                    "id": 95,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "253:7:1",
+                    "src": "304:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
                   "nodeType": "Mapping",
-                  "src": "245:24:1",
+                  "src": "296:24:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                     "typeString": "mapping(address => bool)"
                   },
                   "valueType": {
-                    "id": 76,
+                    "id": 96,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "264:4:1",
+                    "src": "315:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1270,27 +1276,27 @@
               }
             ],
             "name": "VoteRecord",
-            "nameLocation": "213:10:1",
+            "nameLocation": "179:10:1",
             "nodeType": "StructDefinition",
-            "scope": 93,
-            "src": "206:76:1",
+            "scope": 114,
+            "src": "172:161:1",
             "visibility": "public"
           },
           {
             "constant": false,
             "documentation": {
-              "id": 80,
+              "id": 100,
               "nodeType": "StructuredDocumentation",
-              "src": "288:45:1",
+              "src": "339:45:1",
               "text": "@notice Total number of registered voters"
             },
-            "id": 82,
+            "id": 102,
             "mutability": "mutable",
             "name": "voterCount",
-            "nameLocation": "340:10:1",
+            "nameLocation": "391:10:1",
             "nodeType": "VariableDeclaration",
-            "scope": 93,
-            "src": "335:15:1",
+            "scope": 114,
+            "src": "386:15:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1298,10 +1304,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 81,
+              "id": 101,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "335:4:1",
+              "src": "386:4:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -1312,57 +1318,57 @@
           {
             "constant": false,
             "documentation": {
-              "id": 83,
+              "id": 103,
               "nodeType": "StructuredDocumentation",
-              "src": "357:48:1",
+              "src": "408:48:1",
               "text": "@notice Voting roll of all registered voters"
             },
             "functionSelector": "27736f85",
-            "id": 88,
+            "id": 108,
             "mutability": "mutable",
             "name": "voterRoll",
-            "nameLocation": "440:9:1",
+            "nameLocation": "491:9:1",
             "nodeType": "VariableDeclaration",
-            "scope": 93,
-            "src": "407:42:1",
+            "scope": 114,
+            "src": "458:42:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Voter_$72_storage_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Voter_$90_storage_$",
               "typeString": "mapping(address => struct VoterStorage.Voter)"
             },
             "typeName": {
-              "id": 87,
+              "id": 107,
               "keyType": {
-                "id": 84,
+                "id": 104,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "415:7:1",
+                "src": "466:7:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "407:25:1",
+              "src": "458:25:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Voter_$72_storage_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Voter_$90_storage_$",
                 "typeString": "mapping(address => struct VoterStorage.Voter)"
               },
               "valueType": {
-                "id": 86,
+                "id": 106,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 85,
+                  "id": 105,
                   "name": "Voter",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 72,
-                  "src": "426:5:1"
+                  "referencedDeclaration": 90,
+                  "src": "477:5:1"
                 },
-                "referencedDeclaration": 72,
-                "src": "426:5:1",
+                "referencedDeclaration": 90,
+                "src": "477:5:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Voter_$72_storage_ptr",
+                  "typeIdentifier": "t_struct$_Voter_$90_storage_ptr",
                   "typeString": "struct VoterStorage.Voter"
                 }
               }
@@ -1371,54 +1377,60 @@
           },
           {
             "constant": false,
-            "id": 92,
+            "documentation": {
+              "id": 109,
+              "nodeType": "StructuredDocumentation",
+              "src": "504:63:1",
+              "text": "@notice Records if voters have voted on ballot by ballot id"
+            },
+            "id": 113,
             "mutability": "mutable",
             "name": "voteRecordList",
-            "nameLocation": "466:14:1",
+            "nameLocation": "582:14:1",
             "nodeType": "VariableDeclaration",
-            "scope": 93,
-            "src": "453:27:1",
+            "scope": 114,
+            "src": "569:27:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_VoteRecord_$79_storage_$dyn_storage",
+              "typeIdentifier": "t_array$_t_struct$_VoteRecord_$99_storage_$dyn_storage",
               "typeString": "struct VoterStorage.VoteRecord[]"
             },
             "typeName": {
               "baseType": {
-                "id": 90,
+                "id": 111,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 89,
+                  "id": 110,
                   "name": "VoteRecord",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 79,
-                  "src": "453:10:1"
+                  "referencedDeclaration": 99,
+                  "src": "569:10:1"
                 },
-                "referencedDeclaration": 79,
-                "src": "453:10:1",
+                "referencedDeclaration": 99,
+                "src": "569:10:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_VoteRecord_$79_storage_ptr",
+                  "typeIdentifier": "t_struct$_VoteRecord_$99_storage_ptr",
                   "typeString": "struct VoterStorage.VoteRecord"
                 }
               },
-              "id": 91,
+              "id": 112,
               "nodeType": "ArrayTypeName",
-              "src": "453:12:1",
+              "src": "569:12:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_VoteRecord_$79_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_VoteRecord_$99_storage_$dyn_storage_ptr",
                 "typeString": "struct VoterStorage.VoteRecord[]"
               }
             },
             "visibility": "internal"
           }
         ],
-        "scope": 94,
-        "src": "92:392:1",
+        "scope": 115,
+        "src": "58:542:1",
         "usedErrors": []
       }
     ],
-    "src": "32:453:1"
+    "src": "32:569:1"
   },
   "compiler": {
     "name": "solc",
@@ -1426,7 +1438,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.5",
-  "updatedAt": "2022-02-23T21:32:18.593Z",
+  "updatedAt": "2022-02-23T22:12:42.310Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
