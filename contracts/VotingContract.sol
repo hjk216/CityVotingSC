@@ -2,10 +2,10 @@
 pragma solidity ^0.8.11;
 //pragma experimental ABIEncoderV2;
 
-import "./Voters.sol";
+import "./VoterStorage.sol";
 import "./BallotStorage.sol";
 
-contract VotingContract is BallotStorage {
+contract VotingContract is BallotStorage, VoterStorage {
 	
 	struct Administrator {
 		/// @notice Address for the administrator
@@ -15,67 +15,54 @@ contract VotingContract is BallotStorage {
 	/// @notice Owner of voting contract
     Administrator administrator;
 
-	/// @notice Voter storage and functions
-	Voters voters;
-
 	constructor() {
 		/// @notice On creation set administrator to creator address
 		administrator.adminAddress = msg.sender;
-
-		voters = new Voters();
 	}
 	
-
-
-	// Error Messages
-	error NotAdmin(string message);
+	/// @param message Error message
 	error BallotNotClosed(string message);
 
-	
-	// Modifiers
 	modifier onlyOwner() {
-		if (msg.sender != administrator.adminAddress) {
-			revert NotAdmin("Only Administrator May Call Function");
-		}
+		require(
+			msg.sender == administrator.adminAddress,
+			"Only Administrator May Call Function"
+		);
 		_;
 	}
 
 	modifier ballotClosed() {
 		if (ballotsList.length == 0 || ballotsList[currentBallotId].status != 0) {
-			revert BallotNotClosed("Ballot Must Be Closed");
+			revert BallotNotClosed("Ballot Must Be Created & Closed");
 		}
 		_;
 	}
 
 
-	
-	// Events
-	event TestEvent(
-		string message
-	);
 
-
-
-	// Get Information Functions ====================================
-
-	// Get current ballot status
+	/// @notice Get the status of the most recent ballot
+	/// @return The ballot status of CLOSED = 0, OPEN = 1, COMPLETE = 2
 	function getCurrentBallotStatus() public view returns (uint) {
 		require(ballotsList.length > 0, "No Ballot Has Been Created");
 		return ballotsList[currentBallotId].status;
 	}
 
-	// Get current ballot info
+	/// @notice Get the most recent ballot
+	/// @return Return most recent ballot object
 	function getCurrentBallot() public view returns (Ballot memory) {
 		require (ballotsList.length > 0, "No Ballot Has Been Created");
 		return ballotsList[currentBallotId];
-	} 
+	}
 
-	// List all ballot ids and names
+	/// @notice Get list of all ballots
+	/// @return A list of ballot objects
 	function getAllBallots() public view returns (Ballot[] memory) {
 		return ballotsList;
 	}
 
-	// Get ballot info by id
+	/// @notice Get ballot information by id
+	/// @param _id The id of the ballot to retrieve information from
+	/// @return The ballot object of _id
 	function getBallotById(uint _id) public view returns (Ballot memory) {
 		require (_id < ballotsList.length);
 		return (ballotsList[_id]);
@@ -83,18 +70,23 @@ contract VotingContract is BallotStorage {
 
 	/// @notice Gets the total voter count in voter roll
 	/// @return Total voter count
-	function getVoterCount() public view returns (uint) {
-		return voters.getVoterCount();
-	}
+    function getVoterCount() public view returns (uint) {
+        return voterCount;
+    }
 
 	/// @notice Returns a boolean for whether or not given address is in voter roll
 	/// @return True or false if voter address is valid
-	function isVoter(address voterAddress) public view returns (bool) {
-		return voters.isVoter(voterAddress);
+	function isVoter(address _voterAddress) public view returns (bool) {
+		if (voterRoll[_voterAddress].voterAddress != address(0x0)) {
+            return true;
+        } else {
+            return false;
+        }
 	}
 
-	function hasVoterVoted() public view returns (bool) {
-		return voters.hasVoterVoted(msg.sender);
+	/// @notice Check whether or not a voter has voted on current ballot
+	function hasVoted(address _voterAddress, uint ballotId) public view returns (bool) {
+		return voteRecordList[ballotId].hasVoted[_voterAddress];
 	}
 
 	// ==============================================================
@@ -115,12 +107,18 @@ contract VotingContract is BallotStorage {
 		newBallot.status = CLOSED;
 		newBallot.currentElectionId = 0;
 		newBallot.currentIssueId = 0;
+
+		voteRecordList.push();
+		VoteRecord storage newVoteRecord = voteRecordList[ballotsList.length - 1];
+		newVoteRecord.ballotId = currentBallotId;
 	}
 
 	// Delete ballot
 	function deleteBallot() public onlyOwner ballotClosed {
 		delete ballotsList[currentBallotId];
 		ballotsList.pop();
+		delete voteRecordList[currentBallotId];
+		voteRecordList.pop();
 		if (ballotsList.length != 0) {
 			currentBallotId--;
 		}
@@ -173,27 +171,37 @@ contract VotingContract is BallotStorage {
 	// Admin Voter Functions ========================================
 	
 	/// @notice Adds voter to voting roll & increases total voter count
-	/// @param voterAddress Address of voter to add to voter roll
-	function addVoter(address voterAddress) public onlyOwner {
-		voters.addVoter(voterAddress);
+	/// @param _voterAddress Address of voter to add to voter roll
+	function addVoter(address _voterAddress) public onlyOwner {
+		Voter memory newVoter = Voter(_voterAddress);
+		voterRoll[_voterAddress] = newVoter;
+		voterCount = voterCount + 1;
 	}
 
 	/// @notice Adds multiple voters to voting roll & increases total voter count
 	/// @param voterAddresses Addresses of voters to add to voter roll
 	function addMultipleVoters(address[] memory voterAddresses) public onlyOwner {
-		voters.addMultipleVoters(voterAddresses);
+		for (uint i = 0; i < voterAddresses.length; i++) {
+			Voter memory newVoter = Voter(voterAddresses[i]);
+			voterRoll[voterAddresses[i]] = newVoter;
+			voterCount = voterCount + 1;
+		}
 	}
 
 	/// @notice Removes voter from voting roll & reduces total voter count
-	/// @param voterAddress Address of voter to remove from voter roll
-	function removeVoter(address voterAddress) public onlyOwner {
-		voters.removeVoter(voterAddress);
+	/// @param _voterAddress Address of voter to remove from voter roll
+	function removeVoter(address _voterAddress) public onlyOwner {
+		delete voterRoll[_voterAddress];
+		voterCount = voterCount - 1;
 	}
 
 	/// @notice Removes multiple voters from voting roll & reduces total voter count
 	/// @param voterAddresses Addresses of voters to remove from voter roll
 	function removeMultipleVoters(address[] memory voterAddresses) public onlyOwner {
-		voters.removeMultipleVoters(voterAddresses);
+		for (uint i = 0; i < voterAddresses.length; i++) {
+			delete voterRoll[voterAddresses[i]];
+			voterCount = voterCount - 1;
+		}
 	}
 
 	// ==============================================================
@@ -208,7 +216,7 @@ contract VotingContract is BallotStorage {
 	// uint AGAINST = 0;
 	// uint FOR = 1;
 	function vote(uint[][] memory votes) public onlyOwner {
-		require(getCurrentBallotStatus() == 1 && voters.hasVoterVoted(msg.sender) == false);
+		require(getCurrentBallotStatus() == 1 && hasVoted(msg.sender, currentBallotId) == false);
 
 		for (uint i = 0; i < votes.length; i++) {
 			// Vote for election or issue
@@ -223,15 +231,8 @@ contract VotingContract is BallotStorage {
 				}
 			}
 		}
-		voters.updateHasVoted(msg.sender);
+		voteRecordList[currentBallotId].hasVoted[msg.sender] = true;
 	}
-
-	// ==============================================================
-
-
-
-
-	// ==============================================================
 
 	// ==============================================================
 

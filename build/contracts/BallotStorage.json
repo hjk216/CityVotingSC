@@ -1,15 +1,15 @@
 {
   "contractName": "BallotStorage",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/BallotStorage.sol\":\"BallotStorage\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/BallotStorage.sol\":{\"keccak256\":\"0xb2f9f483b28da7256d36077fec5a75ee28415f721b2868c01c7501d39168542a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://49a5df5601c1f15eb0f93f75533252ce782c51f02ec4aa6618422437ffaf7d9e\",\"dweb:/ipfs/QmUseLriZ6E65A5XKa3mbEuMVZ5CfqDLeQfiP2v9ZNRwAs\"]}},\"version\":1}",
-  "bytecode": "0x6080604052600080556001805560028055348015601b57600080fd5b50603f8060296000396000f3fe6080604052600080fdfea2646970667358221220dc72617e412428dba6e3581515ae94ca8a8a58317bac9829dc56fedaa0ff66ba64736f6c634300080b0033",
-  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220dc72617e412428dba6e3581515ae94ca8a8a58317bac9829dc56fedaa0ff66ba64736f6c634300080b0033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/BallotStorage.sol\":\"BallotStorage\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/BallotStorage.sol\":{\"keccak256\":\"0xd9c58839e453026507441ccd81b58463cb5fe0646d320a7ac5904b847a0db845\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://fa585c75d33da299b5b2ca890a2bcb5689a105e99a071bf978a513f0bc8a3007\",\"dweb:/ipfs/QmYHSSzt4hghQjMgytAuyNeub3oZRJqQrSgbQnrqNjmqpC\"]}},\"version\":1}",
+  "bytecode": "0x6080604052600080556001805560028055348015601b57600080fd5b50603f8060296000396000f3fe6080604052600080fdfea2646970667358221220d46076f335f9713ef800b9ddb5e79fc0bd45b77c67726295c9ab863ecb9a0f8f64736f6c634300080b0033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220d46076f335f9713ef800b9ddb5e79fc0bd45b77c67726295c9ab863ecb9a0f8f64736f6c634300080b0033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "58:661:0:-:0;;;560:1;546:15;;576:1;564:13;;596:1;580:17;;58:661;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "58:661:0:-:0;;;;;",
-  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.11;\n\ncontract BallotStorage {\n\t\n\tstruct Candidate {\n\t\tuint id;\n\t\tstring name;\n\t\tuint votes;\n\t}\n\n\tstruct Election {\n\t\tuint id;\n\t\tstring name;\n\t\tuint currentCandidateId;\n\t\tCandidate[] candidates;\n\t}\n\n\tstruct Issue {\n\t\tuint id;\n\t\tstring name;\n\t\tuint forVotes;\n\t\tuint againstVotes;\n\t}\n\n\tstruct Ballot {\n\t\tuint id;\n\t\tstring name;\n\t\tuint status;\n\t\tuint currentElectionId;\n\t\tuint currentIssueId;\n\t\tElection[] elections;\n\t\tIssue[] issues;\n\t}\n\n\t/// @notice State of ballot variables for Ballot.status\n\tuint CLOSED = 0;\n\tuint OPEN = 1;\n\tuint COMPLETE = 2;\n\n    /// @notice Current Ballot ID\n\tuint currentBallotId;\n    \n    /// @notice List of ballots\n\tBallot[] ballotsList;\n\n}\n",
+  "sourceMap": "58:657:0:-:0;;;560:1;546:15;;576:1;564:13;;596:1;580:17;;58:657;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "58:657:0:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.11;\n\ncontract BallotStorage {\n\t\n\tstruct Candidate {\n\t\tuint id;\n\t\tstring name;\n\t\tuint votes;\n\t}\n\n\tstruct Election {\n\t\tuint id;\n\t\tstring name;\n\t\tuint currentCandidateId;\n\t\tCandidate[] candidates;\n\t}\n\n\tstruct Issue {\n\t\tuint id;\n\t\tstring name;\n\t\tuint forVotes;\n\t\tuint againstVotes;\n\t}\n\n\tstruct Ballot {\n\t\tuint id;\n\t\tstring name;\n\t\tuint status;\n\t\tuint currentElectionId;\n\t\tuint currentIssueId;\n\t\tElection[] elections;\n\t\tIssue[] issues;\n\t}\n\n\t/// @notice State of ballot variables for Ballot.status\n\tuint CLOSED = 0;\n\tuint OPEN = 1;\n\tuint COMPLETE = 2;\n\n    /// @notice Current Ballot ID\n\tuint currentBallotId;\n\n    /// @notice List of ballots\n\tBallot[] ballotsList;\n\n}\n",
   "sourcePath": "/Users/hubertkdayssi/Documents/CS_Projects/voting_app/contracts/BallotStorage.sol",
   "ast": {
     "absolutePath": "project:/contracts/BallotStorage.sol",
@@ -803,16 +803,16 @@
             "documentation": {
               "id": 61,
               "nodeType": "StructuredDocumentation",
-              "src": "666:27:0",
+              "src": "662:27:0",
               "text": "@notice List of ballots"
             },
             "id": 65,
             "mutability": "mutable",
             "name": "ballotsList",
-            "nameLocation": "704:11:0",
+            "nameLocation": "700:11:0",
             "nodeType": "VariableDeclaration",
             "scope": 66,
-            "src": "695:20:0",
+            "src": "691:20:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -828,10 +828,10 @@
                   "name": "Ballot",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 47,
-                  "src": "695:6:0"
+                  "src": "691:6:0"
                 },
                 "referencedDeclaration": 47,
-                "src": "695:6:0",
+                "src": "691:6:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_Ballot_$47_storage_ptr",
                   "typeString": "struct BallotStorage.Ballot"
@@ -839,7 +839,7 @@
               },
               "id": 64,
               "nodeType": "ArrayTypeName",
-              "src": "695:8:0",
+              "src": "691:8:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_array$_t_struct$_Ballot_$47_storage_$dyn_storage_ptr",
                 "typeString": "struct BallotStorage.Ballot[]"
@@ -849,11 +849,11 @@
           }
         ],
         "scope": 67,
-        "src": "58:661:0",
+        "src": "58:657:0",
         "usedErrors": []
       }
     ],
-    "src": "32:688:0"
+    "src": "32:684:0"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/BallotStorage.sol",
@@ -1647,16 +1647,16 @@
             "documentation": {
               "id": 61,
               "nodeType": "StructuredDocumentation",
-              "src": "666:27:0",
+              "src": "662:27:0",
               "text": "@notice List of ballots"
             },
             "id": 65,
             "mutability": "mutable",
             "name": "ballotsList",
-            "nameLocation": "704:11:0",
+            "nameLocation": "700:11:0",
             "nodeType": "VariableDeclaration",
             "scope": 66,
-            "src": "695:20:0",
+            "src": "691:20:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1672,10 +1672,10 @@
                   "name": "Ballot",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 47,
-                  "src": "695:6:0"
+                  "src": "691:6:0"
                 },
                 "referencedDeclaration": 47,
-                "src": "695:6:0",
+                "src": "691:6:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_Ballot_$47_storage_ptr",
                   "typeString": "struct BallotStorage.Ballot"
@@ -1683,7 +1683,7 @@
               },
               "id": 64,
               "nodeType": "ArrayTypeName",
-              "src": "695:8:0",
+              "src": "691:8:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_array$_t_struct$_Ballot_$47_storage_$dyn_storage_ptr",
                 "typeString": "struct BallotStorage.Ballot[]"
@@ -1693,11 +1693,11 @@
           }
         ],
         "scope": 67,
-        "src": "58:661:0",
+        "src": "58:657:0",
         "usedErrors": []
       }
     ],
-    "src": "32:688:0"
+    "src": "32:684:0"
   },
   "compiler": {
     "name": "solc",
@@ -1705,7 +1705,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.5",
-  "updatedAt": "2022-02-23T16:40:30.011Z",
+  "updatedAt": "2022-02-23T21:24:52.124Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

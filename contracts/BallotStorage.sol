@@ -40,7 +40,7 @@ contract BallotStorage {
 
     /// @notice Current Ballot ID
 	uint currentBallotId;
-    
+
     /// @notice List of ballots
 	Ballot[] ballotsList;
 
