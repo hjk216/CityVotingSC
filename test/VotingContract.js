@@ -64,14 +64,49 @@ contract('VotingContract', accounts => {
         assert.equal(ballot.issues[2].name, "Green Initiative", "Third issue name does not equal 'Green Initiative");
     });
 
+    it('Admin opens ballot to voting', async () => {
+        const instance = await VotingContract.deployed();
 
+        const beforeStatus = await instance.getCurrentBallotStatus();
+        await instance.openCloseBallot();
+        const afterStatus = await instance.getCurrentBallotStatus();
 
-    // Open ballot
+        assert.equal(beforeStatus, 0, "Ballot is not closed");
+        assert.equal(afterStatus, 1, "Ballot is not open");
+    });
 
-    // Voter votes, voter has voted
+    it('Voter votes, and confirms that they have voted', async () => {
+        const instance = await VotingContract.deployed();
+    
+        await instance.vote([[0, 0, 0], [0, 1, 1], [1, 0, 0], [1, 1, 1], [1, 2, 1]], {from: accounts[1]});
+        await instance.vote([[0, 0, 0], [0, 1, 0], [1, 0, 1], [1, 1, 1], [1, 2, 1]], {from: accounts[3]});
+        
+        const ballot = await instance.getCurrentBallot();
+        
+        const hasVoterOneVoted = await instance.hasVoted(accounts[1], 0);
+        const hasVoterThreeVoted = await instance.hasVoted(accounts[3], 0);
 
-    // Admin closes ballot
+        assert.equal(hasVoterOneVoted, true, "User one has not voted");
+        assert.equal(hasVoterThreeVoted, true, "User three has not voted");
+        assert.equal(
+            ballot.elections[0].candidates[0].votes, 2, 
+            "Election zero, candidate zero, does not have two votes"
+            );
+        assert.equal(
+            ballot.elections[1].candidates[1].votes, 1, 
+            "Election one, candidate one, does not have one vote"
+        );
+        assert.equal(ballot.issues[0].againstVotes, 1, "Issue zero does not have one againstVote");
+        assert.equal(ballot.issues[1].forVotes, 2, "Issue one does not have two forVotes");
+        assert.equal(ballot.issues[2].forVotes, 2, "Issue three does not have two forVotes");
+    });
 
-    // get votes and/or results
+    it('Admin closes ballot', async () => {
+        const instance = await VotingContract.deployed();
+        await instance.openCloseBallot();
+        const ballotStatus = await instance.getCurrentBallotStatus();
+
+        assert.equal(ballotStatus, 2, "Ballot status is not complete");
+    });
 
 });

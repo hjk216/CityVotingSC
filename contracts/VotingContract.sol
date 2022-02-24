@@ -145,6 +145,7 @@ contract VotingContract is BallotStorage, VoterStorage {
 				if (newElection.candidates.length != 0) { newElection.currentCandidateId++; }
 				newElection.candidates.push();
 				Candidate storage newCandidate = newElection.candidates[c - 1];
+				newCandidate.id = newElection.currentCandidateId;
 				newCandidate.name = elections[i][c];
 			}
 		}
@@ -200,20 +201,27 @@ contract VotingContract is BallotStorage, VoterStorage {
 	}
 
 	/// @notice If they have not voted, registered voters can vote for elections & issues on the current, open ballot
+	/// @dev Elections must be listed first and issues second, as well as in order in input
 	/// @param votes List of uint lists with the following structure,
 	/// [ [ election or issue, election id or issue id, VOTE ], ... ]
 	/// election = 0 , issue = 1
 	/// For issue VOTE, forVote = 1, againstVote = 0
 	/// For election VOTE, VOTE = id of candidate
-	function vote(uint[][] memory votes) public onlyOwner {
+	function vote(uint[][] memory votes) public {
 		require(getCurrentBallotStatus() == 1 && hasVoted(msg.sender, currentBallotId) == false);
-
 		for (uint i = 0; i < votes.length; i++) {
 			// Vote for election or issue
 			if (votes[i][0] == 0) {
-				ballotsList[currentBallotId].elections[votes[i][1]].candidates[votes[i][2]].votes++;
+				if (votes[i][1] == i) {
+					ballotsList[currentBallotId].elections[votes[i][1]].candidates[votes[i][2]].votes++;
+				} else {
+					revert("Error");
+				}
 			} else {
 				// Vote for or against issue
+				if (votes[i][1] != i - ballotsList[currentBallotId].elections.length) {
+					revert("Error");
+				}
 				if (votes[i][2] == 1) {
 					ballotsList[currentBallotId].issues[votes[i][1]].forVotes++;
 				} else {
