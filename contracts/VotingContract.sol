@@ -4,6 +4,8 @@ pragma solidity ^0.8.11;
 import "./VoterStorage.sol";
 import "./BallotStorage.sol";
 
+/// @title A city voting smart contract
+
 contract VotingContract is BallotStorage, VoterStorage {
 	
 	struct Administrator {
