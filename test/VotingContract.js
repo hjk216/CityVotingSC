@@ -1,63 +1,77 @@
 const VotingContract = artifacts.require("VotingContract");
 
 contract('VotingContract', accounts => {
-    it('Admin should create ballot', async () => {
-        const votingContractInstance = await VotingContract.deployed();
-        await votingContractInstance.createBallot('Ballot Name', {from: accounts[0]});
-        //console.log(votingContractInstance);
-        //console.log(await votingContractInstance.getAllBallots());
-        //console.log(typeof(await votingContractInstance.getAllBallots()));
-        const obj = await votingContractInstance.getAllBallots();
-        console.log(obj);
-        console.log(obj[0]);
-        console.log(obj[0].name);
+    it('Admin adds voters, gets voter count, confirms voters', async () => {
+        const instance = await VotingContract.deployed();
+        await instance.addVoter(accounts[1]);
+        await instance.addMultipleVoters([accounts[2], accounts[3]]);
+        
+        const voterCount = await instance.getVoterCount();
+        const isAccountOneVoter = await instance.isVoter(accounts[1]);
+        const isAccountThreeVoter = await instance.isVoter(accounts[3]);
+        const isNotVoter = await instance.isVoter(accounts[4]);
 
+        assert.equal(voterCount, 3, "Voter count does not equal 3");
+        assert.equal(isAccountOneVoter, true, "Account one is not voter");
+        assert.equal(isAccountThreeVoter, true, "Account three is not voter");
+        assert.equal(isNotVoter, false, "isVoter does not return false for non-voter");
+    });
 
-        //const ballotsLength = await votingContractInstance.getAllBallots().length;
-        //const ballotName = await votingContractInstance.getBallotById(0).name;
+    it('Admin removes voter, gets updated count', async () => {
+        const instance = await VotingContract.deployed();
+        await instance.removeVoter(accounts[2]);
 
-        //assert.equal(ballotsLength, 1, "Ballot length does not equal 1.");
-        //assert.equal(ballotName, "Ballot Name", "Ballot name does not equal 'Ballot Name'.");
+        const voterCount = await instance.getVoterCount();
+        const isVoter = await instance.isVoter(accounts[2]);
+
+        assert.equal(voterCount, 2, "Voter count does not equal 2");
+        assert.equal(isVoter, false, "isVoter does not equal false");
+    });
+
+    it('Admin creates ballot', async () => {
+        const instance = await VotingContract.deployed();
+        await instance.createBallot('New Ballot Name');
+
+        const ballotsAll = await instance.getAllBallots();
+        const ballot = await instance.getBallotById(0);
+
+        assert.equal(ballotsAll.length, 1, "Ballot length does not equal 1");
+        assert.equal(ballot.name, "New Ballot Name", "Ballot name does not equal 'New Ballot Name'");
+    });
+
+    it('Admin deletes ballot', async () => {
+        const instance = await VotingContract.deployed();
+        await instance.deleteBallot();
+
+        const ballotsAll = await instance.getAllBallots();
+        
+        assert.equal(ballotsAll.length, 0, "Ballots array not empty, does not equal 0");
+    });
+
+    it('Admin creates ballot, adds elections and issues to it', async () => { 
+        const instance = await VotingContract.deployed();
+        await instance.createBallot('New Ballot Name');
+        await instance.addElections([['President','Alice','Bob'], ['Vice President', 'Michael', 'Sarah']]);
+        await instance.addIssues(['Raise Taxes', 'Preserve Building', 'Green Initiative']);
+
+        const ballot = await instance.getCurrentBallot();
+        
+        assert.equal(ballot.elections.length, 2, "There are not two elections");
+        assert.equal(ballot.elections[0].candidates[0].name, "Alice", "First candidate of first election does not equal 'Alice'");
+        assert.equal(ballot.elections[1].candidates[1].name, "Sarah", "Second candidate of second election does not equal 'Sarah'");
+        assert.equal(ballot.issues[0].name, "Raise Taxes", "First issue name does not equal 'Raise Taxes'");
+        assert.equal(ballot.issues[1].name, "Preserve Building", "Second issue name does not equal 'Preserve Building'");
+        assert.equal(ballot.issues[2].name, "Green Initiative", "Third issue name does not equal 'Green Initiative");
     });
 
 
 
-    /*
-  it('should put 10000 MetaCoin in the first account', async () => {
-    const metaCoinInstance = await MetaCoin.deployed();
-    const balance = await metaCoinInstance.getBalance.call(accounts[0]);
+    // Open ballot
 
-    assert.equal(balance.valueOf(), 10000, "10000 wasn't in the first account");
-  });
-  it('should call a function that depends on a linked library', async () => {
-    const metaCoinInstance = await MetaCoin.deployed();
-    const metaCoinBalance = (await metaCoinInstance.getBalance.call(accounts[0])).toNumber();
-    const metaCoinEthBalance = (await metaCoinInstance.getBalanceInEth.call(accounts[0])).toNumber();
+    // Voter votes, voter has voted
 
-    assert.equal(metaCoinEthBalance, 2 * metaCoinBalance, 'Library function returned unexpected function, linkage may be broken');
-  });
-  it('should send coin correctly', async () => {
-    const metaCoinInstance = await MetaCoin.deployed();
+    // Admin closes ballot
 
-    // Setup 2 accounts.
-    const accountOne = accounts[0];
-    const accountTwo = accounts[1];
+    // get votes and/or results
 
-    // Get initial balances of first and second account.
-    const accountOneStartingBalance = (await metaCoinInstance.getBalance.call(accountOne)).toNumber();
-    const accountTwoStartingBalance = (await metaCoinInstance.getBalance.call(accountTwo)).toNumber();
-
-    // Make transaction from first account to second.
-    const amount = 10;
-    await metaCoinInstance.sendCoin(accountTwo, amount, { from: accountOne });
-
-    // Get balances of first and second account after the transactions.
-    const accountOneEndingBalance = (await metaCoinInstance.getBalance.call(accountOne)).toNumber();
-    const accountTwoEndingBalance = (await metaCoinInstance.getBalance.call(accountTwo)).toNumber();
-
-
-    assert.equal(accountOneEndingBalance, accountOneStartingBalance - amount, "Amount wasn't correctly taken from the sender");
-    assert.equal(accountTwoEndingBalance, accountTwoStartingBalance + amount, "Amount wasn't correctly sent to the receiver");
-  });
-  */
 });
