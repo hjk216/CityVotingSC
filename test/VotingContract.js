@@ -1,6 +1,28 @@
-const MetaCoin = artifacts.require("MetaCoin");
+const VotingContract = artifacts.require("VotingContract");
 
-contract('MetaCoin', (accounts) => {
+contract('VotingContract', accounts => {
+    it('Admin should create ballot', async () => {
+        const votingContractInstance = await VotingContract.deployed();
+        await votingContractInstance.createBallot('Ballot Name', {from: accounts[0]});
+        //console.log(votingContractInstance);
+        //console.log(await votingContractInstance.getAllBallots());
+        //console.log(typeof(await votingContractInstance.getAllBallots()));
+        const obj = await votingContractInstance.getAllBallots();
+        console.log(obj);
+        console.log(obj[0]);
+        console.log(obj[0].name);
+
+
+        //const ballotsLength = await votingContractInstance.getAllBallots().length;
+        //const ballotName = await votingContractInstance.getBallotById(0).name;
+
+        //assert.equal(ballotsLength, 1, "Ballot length does not equal 1.");
+        //assert.equal(ballotName, "Ballot Name", "Ballot name does not equal 'Ballot Name'.");
+    });
+
+
+
+    /*
   it('should put 10000 MetaCoin in the first account', async () => {
     const metaCoinInstance = await MetaCoin.deployed();
     const balance = await metaCoinInstance.getBalance.call(accounts[0]);
@@ -37,4 +59,5 @@ contract('MetaCoin', (accounts) => {
     assert.equal(accountOneEndingBalance, accountOneStartingBalance - amount, "Amount wasn't correctly taken from the sender");
     assert.equal(accountTwoEndingBalance, accountTwoStartingBalance + amount, "Amount wasn't correctly sent to the receiver");
   });
+  */
 });
