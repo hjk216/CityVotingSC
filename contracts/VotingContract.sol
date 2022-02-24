@@ -5,6 +5,9 @@ import "./VoterStorage.sol";
 import "./BallotStorage.sol";
 
 /// @title A city voting smart contract
+/// @author Hubert Kdayssi
+/// @notice Contract can store voters, set up ballots with elections and issues
+/// @custom:experimental This is an experimental contract
 
 contract VotingContract is BallotStorage, VoterStorage {
 	
