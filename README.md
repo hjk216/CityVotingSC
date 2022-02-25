@@ -17,4 +17,5 @@ This application was built using Truffle, Ganache, Solidity, and Javascript.
 ### Next Steps
 - Make more gas efficient
 - Write more thorough tests
+- Add events
 - Adjust, or create new project, without central administrator
